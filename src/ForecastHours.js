@@ -25,7 +25,7 @@ function ForecastHours({ getWeather }) {
               src={`https:${hour.condition.icon}`}
               alt="weather icon"
             />
-            <p>{hour.temp_c}°C</p>
+            <p>{Math.round(hour.temp_c)}°C</p>
           </div>
         ))
       ) : (

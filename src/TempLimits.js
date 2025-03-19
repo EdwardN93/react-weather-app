@@ -10,8 +10,8 @@ function TempLimits({ getWeather }) {
       const day = data.forecast.forecastday[0];
 
       if (data) {
-        setLowestTemp(day.day.mintemp_c);
-        setHighestTemp(day.day.maxtemp_c);
+        setLowestTemp(Math.round(day.day.mintemp_c));
+        setHighestTemp(Math.round(day.day.maxtemp_c));
       }
     }
     getInfo();

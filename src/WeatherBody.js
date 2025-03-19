@@ -10,9 +10,25 @@ function WeatherBody({ getWeather }) {
     async function getInfo() {
       const data = await getWeather();
       if (data) {
-        setCelsius(data.current.temp_c);
+        setCelsius(Math.round(data.current.temp_c));
         setCondition(data.current.condition.text);
-        setDate(data.location.localtime);
+        // setDate(data.location.localtime.split(" ")[0].reverse().join("-"));
+        const dateNow = data.location.localtime
+          .split(" ")[0]
+          .split("-")
+          .reverse();
+        const newDate = new Date(
+          Number(dateNow[2]),
+          Number(dateNow[1]) - 1,
+          Number(dateNow[0])
+        );
+        const dateOptions = {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        };
+
+        setDate(newDate.toLocaleDateString("ro-RO", dateOptions));
       }
     }
     getInfo();
